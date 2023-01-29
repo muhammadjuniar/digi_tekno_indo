@@ -55,18 +55,18 @@ export const pegawaiInputs = [
     type: "text",
     placeholder: "324312345678",
   },
-  {
-    id: "jabatan",
-    label: "Jabatan",
-    type: "text",
-    placeholder: "Manager",
-  },
-  {
-    id: "pangkat",
-    label: "Pangkat",
-    type: "text",
-    placeholder: "Pranata R",
-  },
+  // {
+  //   id: "jabatan",
+  //   label: "Jabatan",
+  //   type: "text",
+  //   placeholder: "Manager",
+  // },
+  // {
+  //   id: "pangkat",
+  //   label: "Pangkat",
+  //   type: "text",
+  //   placeholder: "Pranata R",
+  // },
   {
     id: "phone",
     label: "Phone",

@@ -2,7 +2,7 @@
 export const pegawaiCols = [
   { field: "nama", headerName: "Nama", width: 150 },
   { field: "nip", headerName: "Nip", width: 150 },
-  { field: "jabatan", headerName: "Jabatan", width: 150 },
+  { field: "jabatan", headerName: "Jabatan", width: 180 },
   { field: "pangkat", headerName: "Pangkat", width: 150 },
   { field: "gol", headerName: "Gol", width: 100 },
   { field: "phone", headerName: "Kontak", width: 150 },

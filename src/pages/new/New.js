@@ -3,16 +3,58 @@ import React, { useEffect, useState } from "react";
 import Navbar from "../../components/navbar/Navbar";
 import Sidebar from "../../components/sidebar/Sidebar";
 import "./new.scss";
-import { addDoc, collection, doc, serverTimestamp, setDoc } from "firebase/firestore";
+import {
+  addDoc,
+  collection,
+  doc,
+  serverTimestamp,
+  setDoc,
+} from "firebase/firestore";
 import { auth, storage, db } from "../../firebase";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { useNavigate } from "react-router-dom";
 
+const jabatans = [
+  {
+    label: "Pilih Jabatan",
+    value: "def",
+  },
+  {
+    label: "Manager",
+    value: "Manager",
+  },
+];
+
+const pangkats = [
+  {
+    label: "Pilih Pangkat",
+    value: "def",
+  },
+  {
+    label: "Pranata R",
+    value: "Pranata R",
+  },
+];
+
+const golongans = [
+  {
+    label: "Pilih Golongan",
+    value: "def",
+  },
+  {
+    label: "III d",
+    value: "III d",
+  },
+];
+
 function New({ inputs, title }) {
   const [file, setFile] = useState("");
   const [data, setData] = useState({});
   const [percentage, setPercentage] = useState(null);
+  const [jabatan, setJabatan] = useState("def");
+  const [pangkat, setPangkat] = useState("def");
+  const [golongan, setGolongan] = useState("def");
 
   const navigate = useNavigate();
 
@@ -57,22 +99,28 @@ function New({ inputs, title }) {
     const id = e.target.id;
     const value = e.target.value;
 
-    setData({ ...data, [id]: value });
+    setData({
+      ...data,
+      [id]: value,
+      jabatan: jabatan,
+      pangkat: pangkat,
+      gol: golongan,
+    });
   };
 
   const handleAdd = async (e) => {
     e.preventDefault();
     try {
-      const res = 
-      // await createUserWithEmailAndPassword(
-      //   auth,
-      //   data.email,
-      //   data.password
-      // );
-      await addDoc(collection(db, "pegawai"), {
-        ...data,
-        timeStamp: serverTimestamp(),
-      });
+      const res =
+        // await createUserWithEmailAndPassword(
+        //   auth,
+        //   data.email,
+        //   data.password
+        // );
+        await addDoc(collection(db, "pegawai"), {
+          ...data,
+          timeStamp: serverTimestamp(),
+        });
     } catch (err) {
       console.log(err);
     }
@@ -99,6 +147,39 @@ function New({ inputs, title }) {
           </div> */}
           <div className="right">
             <form onSubmit={handleAdd}>
+              <div className="formInput">
+                <label>Jabatan</label>
+                <select
+                  value={jabatan}
+                  onChange={(e) => setJabatan(e.target.value)}
+                >
+                  {jabatans.map((option) => (
+                    <option value={option.value}>{option.label}</option>
+                  ))}
+                </select>
+              </div>
+              <div className="formInput">
+                <label>Pangkat</label>
+                <select
+                  value={pangkat}
+                  onChange={(e) => setPangkat(e.target.value)}
+                >
+                  {pangkats.map((option) => (
+                    <option value={option.value}>{option.label}</option>
+                  ))}
+                </select>
+              </div>
+              <div className="formInput">
+                <label>Gol</label>
+                <select
+                  value={golongan}
+                  onChange={(e) => setGolongan(e.target.value)}
+                >
+                  {golongans.map((option) => (
+                    <option value={option.value}>{option.label}</option>
+                  ))}
+                </select>
+              </div>
               {/* <div className="formInput">
                 <label htmlFor="file">
                   Image: <DriveFolderUploadOutlined className="icon" />
